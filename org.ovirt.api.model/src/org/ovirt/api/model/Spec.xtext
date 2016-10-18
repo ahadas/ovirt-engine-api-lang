@@ -1,0 +1,62 @@
+grammar org.ovirt.api.model.Spec with org.eclipse.xtext.common.Terminals
+
+generate spec "http://www.ovirt.org/api/model/Spec"
+
+Model:
+	(types+=DecType)*
+	(services+=Service)*
+;
+
+Doc:
+	{Doc} NoDoc | ShortDoc | FullDoc
+;
+
+NoDoc:
+	'TODO';
+
+ShortDoc:
+    summary=STRING
+;
+
+FullDoc:
+	'summary:' summary=STRING
+	('description:' description=STRING)?
+	'author:' author=STRING
+	'date:' date=STRING
+	'status:' status=DocStatus;
+
+DecType:
+	doc = Doc 'Type' name=ID (':' superType=[DecType])? '{'
+	   (properties+=Property)*
+	'}'
+;
+
+Property:
+    doc=Doc (link?='Link')? name=ID '::' (dtype=[DecType] | ptype=PrimitiveType) (multiple?='*')? ';'
+;
+
+Service:
+	doc=Doc (areas+=Area (',' areas+=Area)*)? 'Service' name=ID (':' superService=[Service])? '{'
+	    (service_refs+=ServiceRef | actions+=Action)*
+	'}'
+;
+
+ServiceRef:
+	dec=Doc service=[Service] name=ID ';'
+;
+
+Action:
+	doc=Doc name=ID '{'
+		(arguments+=Argument)*
+	'}'
+;
+
+Argument:
+    doc=Doc type=ArgumentType name=ID '::' (dtype=[DecType] | ptype?=PrimitiveType) ';'
+;
+
+enum DocStatus: added|else;
+enum PrimitiveType: String|Boolean|Date;
+enum ArgumentType: In|Out;
+enum Area: Virtualization|Storage|Network|SLA|Infrastructure;
+

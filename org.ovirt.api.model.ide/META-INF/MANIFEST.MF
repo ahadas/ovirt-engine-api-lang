@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: org.ovirt.api.model.ide
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: org.ovirt.api.model.ide; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.ovirt.api.model,
+ org.eclipse.xtext.ide,
+ org.eclipse.xtext.xbase.ide
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: org.ovirt.api.model.ide.contentassist.antlr.internal,
+ org.ovirt.api.model.ide.contentassist.antlr
+
