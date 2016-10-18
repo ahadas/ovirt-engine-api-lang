@@ -1027,7 +1027,7 @@ ruleArgument returns [EObject current=null]
 						set(
 							$current,
 							"ptype",
-							true,
+							lv_ptype_5_0,
 							"org.ovirt.api.model.Spec.PrimitiveType");
 						afterParserOrEnumRuleCall();
 					}

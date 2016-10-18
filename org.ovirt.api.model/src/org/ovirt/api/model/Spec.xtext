@@ -52,7 +52,7 @@ Action:
 ;
 
 Argument:
-    doc=Doc type=ArgumentType name=ID '::' (dtype=[DecType] | ptype?=PrimitiveType) ';'
+    doc=Doc type=ArgumentType name=ID '::' (dtype=[DecType] | ptype=PrimitiveType) ';'
 ;
 
 enum DocStatus: added|else;
